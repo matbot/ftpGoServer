@@ -1,4 +1,4 @@
-package ftpGoServer
+package main
 
 import (
 	"flag"
@@ -6,6 +6,8 @@ import (
 	"log"
 	"net"
 	"path/filepath"
+
+	"github.com/matbot/ftpGoServer/ftp"
 )
 
 var port int
