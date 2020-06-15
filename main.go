@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"path/filepath"
 )
 
 var port int
@@ -30,4 +31,13 @@ func main() {
 		}
 		go handleConnection(connection)
 	}
+}
+
+func handleConnection(c net.Conn) {
+	defer c.Close()
+	absPath, err := filepath.Abs(rootDir)
+	if err != nil {
+		log.Fatal(err)
+	}
+	ftp.Serve(ftp.NewConnection(c, absPath))
 }
