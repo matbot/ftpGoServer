@@ -28,6 +28,8 @@ func (c *Connection) list(args []string) {
 		c.respond(status425)
 		return
 	}
+	defer dataConnection.Close()
+
 	for _, file := range files {
 		_, err := fmt.Fprint(dataConnection, file.Name(), c.EOL())
 		if err != nil {
